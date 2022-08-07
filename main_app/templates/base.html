@@ -9,7 +9,7 @@
   <link
   rel="shortcut icon"
   type="image/png"
-  href="{% static 'images/splash.svg' %}"
+  href="{% static 'images/bird4.svg' %}"
 >
   <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
   <title>Swallow Collector</title>
@@ -21,15 +21,16 @@
     <div class="header-logo-container">
       <a href="/">
         <img 
-          src="{% static 'images/header-logo.svg' %}"
+          src="{% static 'images/bird6.svg' %}"
           alt="The Swallow Collector Logo"
+          style="width:18px"
         >
       </a>
     </div>
     <nav>
       <ul>
-        <li><a href="/swallows">All Swallows</a></li>
-        <li><a href="/about">About</a></li>
+        <li><a href="{% url 'swallow_index'%}">All Swallows</a></li>
+        <li><a href="{% url 'about' %}">About</a></li>
       </ul>
     </nav>
   </header>

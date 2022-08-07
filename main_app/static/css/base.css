@@ -96,7 +96,7 @@ nav li {
 .header-logo-container {
   margin: auto;
   padding: 10px 20px 0;
-  max-width: 500px;
+  max-width: 50px;
 }
 
 .page-header {
@@ -196,9 +196,6 @@ nav li {
     flex-wrap: nowrap;
   }
 
-  .header-logo-container {
-    width: 213px;
-  }
 
   .page-header h1 {
     font-size: var(--font-xtreme);
@@ -251,7 +248,6 @@ nav li {
   .header-logo-container {
     /* visual fix to help align logo */
     padding-top: 6px;
-    width: 256px;
     height: 35px;
   }
 

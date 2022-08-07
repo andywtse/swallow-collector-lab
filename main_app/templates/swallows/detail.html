@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link 
+  rel="stylesheet" 
+  type="text/css" 
+  href="{% static 'css/swallows/swallow-detail.css' %}"
+/>
+{% endblock %}
+
+{% block content %}
+
+<section class="swallow-container">
+  <div class="swallow-img">
+    <img 
+      src="{% static 'images/bird2.svg' %}" 
+      alt="A skater boy swallow"
+    >
+  </div>
+  <div class="swallow-details">
+    <h1>{{ swallow.name }}</h1>
+    {% if swallow.age > 0 %}
+      <h2>A {{ swallow.age }} year old {{ swallow.breed }}</h2>
+    {% else %}
+      <h2>A {{ swallow.breed }} swallow.</h2>
+    {% endif %}
+    <p>{{ swallow.description }}</p>
+  </div>
+</section>
+
+{% endblock %}
