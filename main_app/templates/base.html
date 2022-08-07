@@ -29,7 +29,10 @@
     </div>
     <nav>
       <ul>
-        <li><a href="{% url 'swallow_index'%}">All Swallows</a></li>
+        <li><a href="{% url 'swallows_index'%}">All Swallows</a></li>
+        <li><a href="{% url 'items_index' %}">All Toys</a></li>
+        <li><a href="{% url 'swallows_create' %}">Add a Swallow</a></li>
+        <li><a href="{% url 'items_create' %}">Add an Item</a></li>
         <li><a href="{% url 'about' %}">About</a></li>
       </ul>
     </nav>

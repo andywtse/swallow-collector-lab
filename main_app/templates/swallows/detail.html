@@ -26,7 +26,88 @@
       <h2>A {{ swallow.breed }} swallow.</h2>
     {% endif %}
     <p>{{ swallow.description }}</p>
+    <div class="swallow-actions">
+      <a href="{% url 'swallows_update' swallow.id %}" class="btn warn">Edit</a>
+      <a href="{% url 'swallows_delete' swallow.id %}" class="btn danger">Delete</a>
+    </div>
   </div>
 </section>
+<div class="migration-item-container">
+  <section class="migration">
+    <div class="subsection-title">
+      <h2>Migration</h2>
+    </div>
+    <h3>Add a Migration</h3>
+    <form
+      action="{% url 'add_migration' swallow.id %}"
+      method="post" 
+      class="subsection-content"
+    >
+      {% csrf_token %}
+      {{ migration_form.as_p }}
+      <button type="submit" class="btn submit">Add Migration</button>
+    </form>
+    <table>
+      <thead>
+        <tr><th>Destination</th><th>Rating</th></tr>
+      </thead>
+      <tbody>
+        {% for migration in swallow.migration_set.all %}
+          <tr>
+            <td>{{migration.destination}}</td>
+            <td>{{migration.get_rating_display}}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+  <section class="items">
+    <div class="subsection-title">
+      <h2>Items</h2>
+    </div>
+    <h3>{{ swallow.name }}'s Items</h3>
+    <div class="subsection-content">
+      {% if swallow.items.count %}
+        {% for item in swallow.items.all %}
+          <div class="item-container">
+            <div 
+              class="color-block"
+              style="background-color: {{ item.color }}"
+            ></div>
+            <a href="{% url 'items_detail' item.id %}">
+              <p>A {{ item.color }} {{ item.name }}</p>
+            </a>
+          </div>
+        {% endfor %}
+      {% else %}
+        <p class="no-items">{{swallow.name}} doesn't have any items 😞</p>
+      {% endif %}
+    </div>
+    <h3>Available Items</h3>
+    <div class="subsection-content">
+      {% if items.count %}
+      {% for item in items.all %}
+        <div class="item-container">
+          <div 
+            class="color-block"
+            style="background-color: {{ item.color }}"
+          ></div>
+          <a href="{% url 'items_detail' item.id %}">
+            <p>A {{ item.color }} {{ item.name }}</p>
+          </a>
+          <form action="{% url 'assoc_item' swallow.id item.id %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn submit">Give item</button>
+          </form>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p class="all-item">
+        {{cat.name}} already has all the available item 🥳
+      </p>
+    {% endif %}
+    </div>
+  </section>
+</div>
 
 {% endblock %}
