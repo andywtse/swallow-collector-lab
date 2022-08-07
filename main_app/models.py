@@ -1,6 +1,7 @@
 from statistics import mode
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 RATING = (
   ('1','Very Bad'),
@@ -29,6 +30,7 @@ class Swallow(models.Model):
   age = models.IntegerField()
   speed = models.FloatField()
   items = models.ManyToManyField(Item)
+  user = models.ForeignKey(User, on_delete=models.CASCADE)
   
   def __str__(self):
     return self.name
